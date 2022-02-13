@@ -169,8 +169,8 @@ class Shelves extends React.Component {
               </div>
             </div>
             <div className="open-search">
-              <Link>
-                <button to="/search">Add a book</button>
+              <Link to="/search">
+                <button>Add a book</button>
               </Link>
             </div>
           </div>
