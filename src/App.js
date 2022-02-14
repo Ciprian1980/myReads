@@ -26,12 +26,19 @@ class App extends React.Component {
   
   render() {
     const { books } = this.state
-    const { currentlyReading, wantToRead, read} = this.state.shelves
+    console.log('books:', books)
+    const { currentlyReading, wantToRead, read } = this.state.shelves
     return (
       <div>
         <Routes 
           path="/shelves" 
-          element={<Shelves books={books} />}
+          element={
+            <Shelves 
+              books={ books } 
+              currentlyReading={ currentlyReading } 
+              wantToRead={ wantToRead }
+              read={ read }
+            />}
         />
         <Routes 
           path="/search" 
