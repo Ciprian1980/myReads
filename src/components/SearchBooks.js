@@ -1,21 +1,22 @@
-import React from 'react'
+import React, { Component }  from 'react'
 import { Link } from 'react-router-dom'
 import '../App.css'
 
-function SearchBooks(props) {
-  const { query } = props.query
-  const { books, currentlyReading, wantToRead, read } = this.props
+class SearchBooks extends Component {
+  
 
-  const updateQuery = (query) => {
+  updateQuery = (query) => {
     this.setState(() => ({
       query: query.trim()
     }))
   }
-  //console.log('queries:', props.query)
-    
+  
+render() {
+  const { books, query, currentlyReading, wantToRead, read } = this.props
+  console.log('books:', books)
   return(
     <div className="search-books">
-      {JSON.stringify(props.query)}
+      {JSON.stringify(query)}
       <div className="search-books-bar">
         <Link to="/">
           <button className="close-search">Close</button>
@@ -33,14 +34,14 @@ function SearchBooks(props) {
             type="text" 
             placeholder="Search by title or author"
             value={ query }
-            onChange={(event) => updateQuery(event.target.value)}
+            onChange={(event) => this.updateQuery(event.target.value)}
           />
         </div>
       </div>
       <div className="search-books-results">
         <ol className="books-grid"></ol>
       </div>
-
+      <div className="bookshelf-books">
         <ol className="books-grid">
           <li>
             {books.map((book) => (
@@ -49,7 +50,7 @@ function SearchBooks(props) {
                   <li key={book.id}>{book.title}</li>
                   <div 
                     className="book-cover"
-                    style={{backgroundImage: `url(${book.WorkOnThis})`}}
+                    style={{width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})`}}
                   ></div>
                   <div className="book-shelf-changer">
                     <select>
@@ -67,8 +68,9 @@ function SearchBooks(props) {
             ))}
           </li>
         </ol>
-        
+      </div>
     </div>
   )
+ }
 }
 export default SearchBooks 

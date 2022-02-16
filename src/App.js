@@ -27,7 +27,7 @@ class App extends React.Component {
   
   render() {
     const { books, query } = this.state
-    console.log('queries:', query)
+    //console.log('books:', books)
     const { currentlyReading, wantToRead, read } = this.state.shelves
     return (
       <div>

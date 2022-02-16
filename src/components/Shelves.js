@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom'
 import '../App.css'
 
 class Shelves extends React.Component {
-  state = {
-    
-  }
 
   render() {
     const { currentlyReading, wantToRead, read } = this.props
