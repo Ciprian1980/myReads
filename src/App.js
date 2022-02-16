@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import Shelves from './components/Shelves'
 import SearchBooks from './components/SearchBooks'
@@ -8,6 +8,7 @@ class App extends React.Component {
 
   state = {
     books: [],
+    query: '',
     shelves: {
       currentlyReading: [],
       wantToRead: [],
@@ -25,31 +26,36 @@ class App extends React.Component {
   }
   
   render() {
-    const { books } = this.state
-    console.log('books:', books)
+    const { books, query } = this.state
+    console.log('queries:', query)
     const { currentlyReading, wantToRead, read } = this.state.shelves
     return (
       <div>
-        <Routes 
-          path="/shelves" 
-          element={
-            <Shelves 
-              books={ books } 
-              currentlyReading={ currentlyReading } 
-              wantToRead={ wantToRead }
-              read={ read }
-            />}
-        />
-        <Routes 
-          path="/search" 
-          element={
-            <SearchBooks 
-              currentlyReading={ currentlyReading } 
-              wantToRead={ wantToRead }
-              read={ read }
-            />
-          }
-        />
+        <Routes>
+          <Route 
+            path="/" 
+            element={
+              <Shelves 
+                books={ books } 
+                query={ query }
+                currentlyReading={ currentlyReading } 
+                wantToRead={ wantToRead }
+                read={ read }
+              />}
+          />
+          <Route
+            path="/search" 
+            element={
+              <SearchBooks 
+                books={ books }
+                query={ query }
+                currentlyReading={ currentlyReading } 
+                wantToRead={ wantToRead }
+                read={ read }
+              />
+            }
+          />
+        </Routes>
       </div>
     )
   }
