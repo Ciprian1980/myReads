@@ -4,16 +4,16 @@ import '../App.css'
 
 class SearchBooks extends Component {
   
-
-  updateQuery = (query) => {
-    this.setState(() => ({
-      query: query.trim()
-    }))
+  updateQuery = (event) => {
+    this.setState({query: event.target.value})
   }
   
 render() {
-  const { books, query, currentlyReading, wantToRead, read } = this.props
-  console.log('books:', books)
+  const { books, query, searchTerm, currentlyReading, wantToRead, read } = this.props
+  console.log('searchTerm:', searchTerm)
+
+  const showingBooks = query === books.title || query === books.authors || query === searchTerm
+
   return(
     <div className="search-books">
       {JSON.stringify(query)}
@@ -34,7 +34,7 @@ render() {
             type="text" 
             placeholder="Search by title or author"
             value={ query }
-            onChange={(event) => this.updateQuery(event.target.value)}
+            onChange={this.updateQuery}
           />
         </div>
       </div>
