@@ -10,6 +10,7 @@ class App extends React.Component {
     books: [],
     query: '',
     searchTerm: '',
+    bookFound: [],
     shelves: {
       currentlyReading: [],
       wantToRead: [],
@@ -18,25 +19,26 @@ class App extends React.Component {
   }
   
   componentDidMount() {
-    BooksAPI
-      .getAll()
-        .then((books) => {
-          this.setState(() => ({
-            books
-          }))
-        })
+    // BooksAPI
+    //   .getAll()
+    //     .then((books) => {
+    //       this.setState(() => ({
+    //         books
+    //       }))
+    //     })
     BooksAPI  
-        .search()
+        .search(this.state.query)
           .then((searchTerm) => {
             this.setState(() => ({
-              searchTerm 
+              bookFound: searchTerm
             }))
           })
   }
   
   render() {
-    const { books, query, searchTerm } = this.state
+    const { books, query, searchTerm, bookFound } = this.state
     console.log('searchTerm', searchTerm)
+    console.log('books', books)
     const { currentlyReading, wantToRead, read } = this.state.shelves
     return (
       <div>
@@ -59,6 +61,7 @@ class App extends React.Component {
                 books={ books }
                 query={ query }
                 searchTerm={ searchTerm }
+                bookFound={ bookFound }
                 currentlyReading={ currentlyReading } 
                 wantToRead={ wantToRead }
                 read={ read }

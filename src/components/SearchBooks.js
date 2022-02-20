@@ -9,14 +9,16 @@ class SearchBooks extends Component {
   }
   
 render() {
-  const { books, query, searchTerm, currentlyReading, wantToRead, read } = this.props
+  const { query, searchTerm, bookFound, currentlyReading, wantToRead, read } = this.props
   console.log('searchTerm:', searchTerm)
 
-  const showingBooks = query === books.title || query === books.authors || query === searchTerm
+  const showingBooks = query === ''
+    ? null
+    : bookFound
 
   return(
     <div className="search-books">
-      {JSON.stringify(query)}
+      {JSON.stringify(showingBooks)}
       <div className="search-books-bar">
         <Link to="/">
           <button className="close-search">Close</button>
@@ -44,13 +46,13 @@ render() {
       <div className="bookshelf-books">
         <ol className="books-grid">
           <li>
-            {books.map((book) => (
+            {showingBooks.map((book, index) => (
               <div className="book">
                 <div className="book-top">
-                  <li key={book.id}>{book.title}</li>
+                  <li key={book[index]}>{book.title}</li>
                   <div 
                     className="book-cover"
-                    style={{width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})`}}
+                    style={{width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})`}}
                   ></div>
                   <div className="book-shelf-changer">
                     <select>
