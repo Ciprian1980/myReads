@@ -9,16 +9,15 @@ class SearchBooks extends Component {
   }
   
 render() {
-  const { query, searchTerm, bookFound, currentlyReading, wantToRead, read } = this.props
-  console.log('searchTerm:', searchTerm)
+  const { query, bookFound, currentlyReading, wantToRead, read } = this.props
 
   const showingBooks = query === ''
-    ? null
+    ? <div><p>{"Please enter a book for search"}</p></div>
     : bookFound
 
   return(
     <div className="search-books">
-      {JSON.stringify(showingBooks)}
+      {/* {JSON.stringify(showingBooks)} */}
       <div className="search-books-bar">
         <Link to="/">
           <button className="close-search">Close</button>
