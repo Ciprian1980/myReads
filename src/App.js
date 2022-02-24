@@ -26,12 +26,17 @@ class App extends React.Component {
           }))
         })
   }
-  searchBooks = () => {
-    this.setState((response) => ({
-      bookFound: response
-    }))
-    BooksAPI.search(this.state.query)
-  }
+  
+   searchBooks = () => {
+     BooksAPI
+      .search(this.state.query)
+      .then((response) => {
+        this.setState(() => ({
+          bookFound: response
+        }))
+      })
+   } 
+  
   
   render() {
     const { books, query, bookFound } = this.state

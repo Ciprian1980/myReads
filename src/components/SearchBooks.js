@@ -3,21 +3,18 @@ import { Link } from 'react-router-dom'
 import '../App.css'
 
 class SearchBooks extends Component {
-  state = {
-    inputQuestion: ''
-  }
+  
   updateInput = (event) => {
-    this.setState({inputQuestion: event.target.value})
+    this.setState({query: event.target.value})
   }
   
 render() {
-  const { inputQuestion } = this.state
-  const { bookFound, currentlyReading, wantToRead, read } = this.props
+  const { query, bookFound, currentlyReading, wantToRead, read } = this.props
 
-  const showingBooks = inputQuestion === ''
+  const showingBooks = query === ''
     ? []
     : bookFound.filter(b => (
-      b.title.toLowerCase().includes(inputQuestion.toLowerCase())
+      b.title.toLowerCase().includes(query.toLowerCase())
     ))
 
   return(
@@ -39,8 +36,8 @@ render() {
           <input 
             type="text" 
             placeholder="Search by title or author"
-            value={ inputQuestion }
-            onChange={this.updateQuery}
+            value={ query }
+            onChange={this.updateInput}
           />
         </div>
       </div>
