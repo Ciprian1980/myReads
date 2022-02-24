@@ -3,13 +3,16 @@ import { Link } from 'react-router-dom'
 import '../App.css'
 
 class SearchBooks extends Component {
-  
+  state = {
+    query: ''
+  }
   updateQuery = (event) => {
     this.setState({query: event.target.value})
   }
   
 render() {
-  const { query, bookFound, currentlyReading, wantToRead, read } = this.props
+  const { query } = this.state
+  const {  bookFound, currentlyReading, wantToRead, read } = this.props
 
   const showingBooks = query === ''
     ? []
