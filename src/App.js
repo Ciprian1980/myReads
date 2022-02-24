@@ -18,20 +18,19 @@ class App extends React.Component {
   }
   
   componentDidMount() {
-    // BooksAPI
-    //   .getAll()
-    //     .then((books) => {
-    //       this.setState(() => ({
-    //         books
-    //       }))
-    //     })
-    BooksAPI  
-        .search(this.state.query)
-          .then((response) => {
-            this.setState(() => ({
-              bookFound: response
-            }))
-          })
+    BooksAPI
+      .getAll()
+        .then((books) => {
+          this.setState(() => ({
+            books
+          }))
+        })
+  }
+  searchBooks = () => {
+    this.setState((response) => ({
+      bookFound: response
+    }))
+    BooksAPI.search(this.state.query)
   }
   
   render() {

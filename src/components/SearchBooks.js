@@ -12,8 +12,10 @@ render() {
   const { query, bookFound, currentlyReading, wantToRead, read } = this.props
 
   const showingBooks = query === ''
-    ? <div><p>{"Please enter a book for search"}</p></div>
-    : bookFound
+    ? []
+    : bookFound.filter(b => (
+      b.title.toLowerCase().includes(query.toLowerCase())
+    ))
 
   return(
     <div className="search-books">
