@@ -4,20 +4,20 @@ import '../App.css'
 
 class SearchBooks extends Component {
   state = {
-    query: ''
+    inputQuestion: ''
   }
-  updateQuery = (event) => {
-    this.setState({query: event.target.value})
+  updateInput = (event) => {
+    this.setState({inputQuestion: event.target.value})
   }
   
 render() {
-  const { query } = this.state
-  const {  bookFound, currentlyReading, wantToRead, read } = this.props
+  const { inputQuestion } = this.state
+  const { bookFound, currentlyReading, wantToRead, read } = this.props
 
-  const showingBooks = query === ''
+  const showingBooks = inputQuestion === ''
     ? []
     : bookFound.filter(b => (
-      b.title.toLowerCase().includes(query.toLowerCase())
+      b.title.toLowerCase().includes(inputQuestion.toLowerCase())
     ))
 
   return(
@@ -39,7 +39,7 @@ render() {
           <input 
             type="text" 
             placeholder="Search by title or author"
-            value={ query }
+            value={ inputQuestion }
             onChange={this.updateQuery}
           />
         </div>
