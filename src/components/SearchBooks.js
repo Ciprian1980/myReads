@@ -9,15 +9,15 @@ state = {
   query: ''
 }
 
-// updateInput = (query) => {
-//   BooksAPI
-//     .search(query)
-//       .then((response) => {
-//         this.setState(() => ({
-//           bookFound: response
-//         }))
-//       })
-// }
+updateInput = (query) => {
+  BooksAPI
+    .search(query)
+      .then((response) => {
+        this.setState(() => ({
+          bookFound: response
+        }))
+      })
+}
   
 render() {
   const { query } = this.state
@@ -49,15 +49,7 @@ render() {
             type="text" 
             placeholder="Search by title or author"
             value={ query }
-            onChange={ () => (
-              BooksAPI
-                .search(query)
-                  .then((response) => {
-                    this.setState(() => ({
-                      bookFound: response
-                    }))
-                  })) 
-            }
+            onChange={ this.updateInput }
           />
         </div>
       </div>
