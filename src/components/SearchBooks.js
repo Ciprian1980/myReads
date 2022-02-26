@@ -5,12 +5,23 @@ import '../App.css'
 
 class SearchBooks extends Component {
   
-  // updateInput = (event) => {
-  //   this.setState({query: event.target.value})
-  // }
+state = {
+  query: ''
+}
+
+// updateInput = (query) => {
+//   BooksAPI
+//     .search(query)
+//       .then((response) => {
+//         this.setState(() => ({
+//           bookFound: response
+//         }))
+//       })
+// }
   
 render() {
-  const { query, bookFound, currentlyReading, wantToRead, read } = this.props
+  const { query } = this.state
+  const { bookFound, currentlyReading, wantToRead, read } = this.props
 
   const showingBooks = query === ''
     ? []
@@ -38,13 +49,14 @@ render() {
             type="text" 
             placeholder="Search by title or author"
             value={ query }
-            onChange={ BooksAPI
-                          .search(query)
-                          .then((response) => {
-                            this.setState(() => ({
-                              bookFound: response
-                            }))
-                          })
+            onChange={ () => (
+              BooksAPI
+                .search(query)
+                  .then((response) => {
+                    this.setState(() => ({
+                      bookFound: response
+                    }))
+                  })) 
             }
           />
         </div>
