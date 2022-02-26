@@ -1,12 +1,13 @@
 import React, { Component }  from 'react'
 import { Link } from 'react-router-dom'
+import * as BooksAPI from '../BooksAPI'
 import '../App.css'
 
 class SearchBooks extends Component {
   
-  updateInput = (event) => {
-    this.setState({query: event.target.value})
-  }
+  // updateInput = (event) => {
+  //   this.setState({query: event.target.value})
+  // }
   
 render() {
   const { query, bookFound, currentlyReading, wantToRead, read } = this.props
@@ -37,7 +38,14 @@ render() {
             type="text" 
             placeholder="Search by title or author"
             value={ query }
-            onChange={this.updateInput}
+            onChange={ BooksAPI
+                          .search(query)
+                          .then((response) => {
+                            this.setState(() => ({
+                              bookFound: response
+                            }))
+                          })
+            }
           />
         </div>
       </div>
