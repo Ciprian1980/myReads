@@ -11,11 +11,11 @@ state = {
 }
 
 updateInput = (event) => {
-  this.setState((prevQuery) => ({
-          query: prevQuery
-  }))
+  this.setState({
+    query: event.target.value,
+  })
   BooksAPI
-    .search(event.target.value)
+    .search(this.state.query)
       .then((response) => {
         this.setState(() => ({
           booksFound: response,
