@@ -6,29 +6,24 @@ import '../App.css'
 class SearchBooks extends Component {
   
 state = {
-  query: ''
+  query: '',
+  booksFound: []
 }
 
-updateInput = (query) => {
+updateInput = (event) => {
   BooksAPI
-    .search(query)
+    .search(event.target.value)
       .then((response) => {
         this.setState(() => ({
-          bookFound: response
+          booksFound: response
         }))
       })
 }
   
 render() {
-  const { query } = this.state
-  const { bookFound, currentlyReading, wantToRead, read } = this.props
-
-  const showingBooks = query === ''
-    ? []
-    : bookFound.filter(b => (
-      b.title.toLowerCase().includes(query.toLowerCase())
-    ))
-
+  const { query, booksFound } = this.state
+  const { currentlyReading, wantToRead, read } = this.props
+  console.log('booksFound:', booksFound)
   return(
     <div className="search-books">
       {/* {JSON.stringify(showingBooks)} */}
@@ -59,13 +54,13 @@ render() {
       <div className="bookshelf-books">
         <ol className="books-grid">
           <li>
-            {showingBooks.map((book, index) => (
+            {booksFound.map((book, index) => (
               <div className="book">
                 <div className="book-top">
                   <li key={book[index]}>{book.title}</li>
                   <div 
                     className="book-cover"
-                    style={{width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})`}}
+                    style={{width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})`}}
                   ></div>
                   <div className="book-shelf-changer">
                     <select>

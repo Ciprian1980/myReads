@@ -8,7 +8,6 @@ class App extends React.Component {
 
   state = {
     books: [],
-    bookFound: [],
     shelves: {
       currentlyReading: [],
       wantToRead: [],
@@ -27,9 +26,8 @@ class App extends React.Component {
   }
   
   render() {
-    const { books, bookFound } = this.state
+    const { books } = this.state
     
-    console.log('bookFound', bookFound)
     const { currentlyReading, wantToRead, read } = this.state.shelves
     return (
       <div>
@@ -49,7 +47,6 @@ class App extends React.Component {
             element={
               <SearchBooks 
                 books={ books }
-                bookFound={ bookFound }
                 currentlyReading={ currentlyReading } 
                 wantToRead={ wantToRead }
                 read={ read }
