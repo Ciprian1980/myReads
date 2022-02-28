@@ -12,13 +12,13 @@ state = {
 
 updateInput = (event) => {
   this.setState({
-    query: event.target.value,
+    query: event.target.value
   })
   BooksAPI
-    .search(this.state.query)
+    .search(event.target.value)
       .then((response) => {
         this.setState(() => ({
-          booksFound: response,
+          booksFound: response
         }))
       })
 }
