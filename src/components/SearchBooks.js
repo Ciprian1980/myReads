@@ -17,9 +17,14 @@ updateInput = (event) => {
   BooksAPI
     .search(event.target.value)
       .then((response) => {
-        this.setState(() => ({
-          booksFound: response
-        }))
+        console.log('response', response)
+          if(Array.isArray(response)){
+            this.setState(() => ({
+            booksFound: response
+          }))
+        } else {
+          this.setState({})
+        }
       })
 }
   
