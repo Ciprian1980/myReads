@@ -23,7 +23,7 @@ updateInput = (event) => {
             booksFound: response
           }))
         } else {
-          this.setState({})
+          this.setState({}, () => ({ booksFound: [] })) 
         }
       })
 }
