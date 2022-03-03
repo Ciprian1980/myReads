@@ -20,10 +20,12 @@ updateInput = (event) => {
         console.log('response', response)
           if(Array.isArray(response)){
             this.setState(() => ({
-            booksFound: response
+            booksFound: response.filter((r) => { 
+              return r.imageLinks.thumbnail && r.imageLinks.smallThumbnail!== undefined 
+            })
           }))
         } else {
-          this.setState({}, () => ({ booksFound: [] })) 
+          this.setState(() => ({ booksFound: [] })); 
         }
       })
 }
