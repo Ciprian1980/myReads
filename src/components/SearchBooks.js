@@ -17,14 +17,13 @@ updateInput = (event) => {
   BooksAPI
     .search(event.target.value)
       .then((response) => {
-        console.log('response', response)
+        // console.log('response', response)
           if(Array.isArray(response)){
             this.setState(() => ({
             booksFound: response.filter((r) => { 
               if (r.imageLinks !== undefined) 
                     return  r.imageLinks.smallThumbnail !== undefined 
                             && r.imageLinks.thumbnail !== undefined 
-                      
             })
           }))
         } else {
@@ -32,11 +31,20 @@ updateInput = (event) => {
         }
       })
 }
+updateController = () => {
+  BooksAPI
+    .update(this.state.booksFound.id, this.props.shelves)
+      .then((response) => {
+        this.setState(() => ({
+          
+        }))
+      })
+}
   
 render() {
   const { query, booksFound } = this.state
   const { currentlyReading, wantToRead, read } = this.props
-  console.log('booksFound:', booksFound)
+  // console.log('booksFound:', booksFound)
   return(
     <div className="search-books">
       {/* {JSON.stringify(showingBooks)} */}
