@@ -21,7 +21,10 @@ updateInput = (event) => {
           if(Array.isArray(response)){
             this.setState(() => ({
             booksFound: response.filter((r) => { 
-              return r.imageLinks.thumbnail && r.imageLinks.smallThumbnail!== undefined 
+              if (r.imageLinks !== undefined) 
+                    return  r.imageLinks.smallThumbnail !== undefined 
+                            && r.imageLinks.thumbnail !== undefined 
+                      
             })
           }))
         } else {
