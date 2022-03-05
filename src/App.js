@@ -7,12 +7,7 @@ import SearchBooks from './components/SearchBooks'
 class App extends React.Component {
 
   state = {
-    books: [],
-    shelves: {
-      currentlyReading: [],
-      wantToRead: [],
-      read: []
-    }
+    books: []
   }
   
   componentDidMount() {
@@ -24,11 +19,19 @@ class App extends React.Component {
           }))
         })
   }
+  updateController = () => {
+    BooksAPI
+      .update(this.state.books.id)
+        .then((response) => {
+          console.log('response:', response)
+          this.setState(() => ({
+            books: 
+          }))
+        })
+  }
   
   render() {
-    const { books } = this.state
-    
-    const { currentlyReading, wantToRead, read } = this.state.shelves
+    const { books } = this.state;
     return (
       <div>
         <Routes>
@@ -37,9 +40,6 @@ class App extends React.Component {
             element={
               <Shelves 
                 books={ books } 
-                currentlyReading={ currentlyReading } 
-                wantToRead={ wantToRead }
-                read={ read }
               />}
           />
           <Route
@@ -47,9 +47,6 @@ class App extends React.Component {
             element={
               <SearchBooks 
                 books={ books }
-                currentlyReading={ currentlyReading } 
-                wantToRead={ wantToRead }
-                read={ read }
               />
             }
           />

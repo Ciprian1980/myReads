@@ -5,8 +5,14 @@ import '../App.css'
 
 class Shelves extends React.Component {
 
+  state = {
+    currentlyReading: [],
+    wantToRead: [],
+    read: []
+  }
+
   render() {
-    const { currentlyReading, wantToRead, read } = this.props
+    const { currentlyReading, wantToRead, read } = this.state
     //console.log('books:', this.props)
     return (
       <div className="app">

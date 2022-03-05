@@ -31,15 +31,6 @@ updateInput = (event) => {
         }
       })
 }
-updateController = () => {
-  BooksAPI
-    .update(this.state.booksFound.id, this.props.shelves)
-      .then((response) => {
-        this.setState(() => ({
-          
-        }))
-      })
-}
   
 render() {
   const { query, booksFound } = this.state
