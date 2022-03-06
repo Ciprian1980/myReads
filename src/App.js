@@ -21,17 +21,20 @@ class App extends React.Component {
   }
   updateController = () => {
     BooksAPI
-      .update(this.state.books.id)
+      .update(this.state.books.id, )
         .then((response) => {
           console.log('response:', response)
-          this.setState(() => ({
-            books: 
+          this.setState((prevBook) => ({
+            books: prevBook.id.filter((b) => {
+
+            })
           }))
         })
   }
   
   render() {
     const { books } = this.state;
+    console.log('these are the books:', books)
     return (
       <div>
         <Routes>
