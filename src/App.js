@@ -26,7 +26,7 @@ class App extends React.Component {
           console.log('response:', response)
           this.setState((prevBook) => ({
             books: prevBook.book.filter(() => {
-              const newBook = book.shelf !== shelf
+              const newBook = !shelf.includes(book.shelf)
               return newBook.concat(shelf)
             })
           }))
