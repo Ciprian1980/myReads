@@ -19,14 +19,14 @@ class App extends React.Component {
           }))
         })
   }
-  updateController = () => {
+  updateController = (book, shelf) => {
     BooksAPI
-      .update(this.state.books.id, )
+      .update(book, shelf)
         .then((response) => {
           console.log('response:', response)
           this.setState((prevBook) => ({
-            books: prevBook.id.filter((b) => {
-
+            books: prevBook.filter((b) => {
+              return 
             })
           }))
         })
