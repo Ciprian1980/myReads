@@ -25,9 +25,12 @@ class App extends React.Component {
         .then((response) => {
           console.log('response:', response)
           this.setState((prevBook) => ({
-            books: prevBook.book.filter(() => {
-              const newBook = !shelf.includes(book.shelf)
-              return newBook.concat(shelf)
+            books: prevBook.books.filter((_book) => {
+              const newBooks = book.id !== _book.id
+              if(shelf !== 'none') {
+                shelf.concat(newBooks)
+              }
+              return ({books: newBooks})
             })
           }))
         })
@@ -51,6 +54,7 @@ class App extends React.Component {
             element={
               <SearchBooks 
                 books={ books }
+                updateController={this.updateController}
               />
             }
           />
