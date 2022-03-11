@@ -25,14 +25,10 @@ class App extends React.Component {
         .then((response) => {
           console.log('response:', response)
           this.setState((prevBook) => ({
-            books: prevBook.books.filter((_book) => {
-              const newBook = book.id !== _book.id
-              if(shelf !== 'none') {
-                const newShelfValue = shelf
-                newShelfValue.concat(newBook)
-              }
-              return ({books: newBook})
-            })
+            books: prevBook.books
+              .filter((_book) => {
+              return _book.id !== book.id
+            }).concat({...book, shelf})
           }))
         })
   }
