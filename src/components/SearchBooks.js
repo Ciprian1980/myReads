@@ -20,25 +20,22 @@ updateInput = (event) => {
         // console.log('response', response)
           if(Array.isArray(response)){
             this.setState(() => ({
-            booksFound: response.filter((r) => { 
-              if (r.imageLinks !== undefined) 
-                    return  r.imageLinks.smallThumbnail !== undefined 
-                            && r.imageLinks.thumbnail !== undefined 
-            })
-          }))
-        } else {
-          this.setState(() => ({ booksFound: [] })); 
-        }
+              booksFound: response.filter((r) => { 
+                if (r.imageLinks !== undefined) 
+                  return  r.imageLinks.smallThumbnail !== undefined 
+                          && r.imageLinks.thumbnail !== undefined 
+              })
+            }))
+          } else {
+              this.setState(() => ({ booksFound: [] })); 
+          }
       })
 }
   
 render() {
   const { query, booksFound } = this.state
-  const { currentlyReading, wantToRead, read } = this.props
-  // console.log('booksFound:', booksFound)
   return(
     <div className="search-books">
-      {/* {JSON.stringify(showingBooks)} */}
       <div className="search-books-bar">
         <Link to="/">
           <button className="close-search">Close</button>
@@ -71,9 +68,9 @@ render() {
                       onChange={(event) => this.props.updateController(book, event.target.value)} 
                     >
                       <option value="move" disabled>Move to...</option>
-                      <option value={ currentlyReading }>Currently Reading</option>
-                      <option value={ wantToRead }>Want to Read</option>
-                      <option value={ read }>Read</option>
+                      <option value="currentlyReading">Currently Reading</option>
+                      <option value="wantToRead">Want to Read</option>
+                      <option value="read">Read</option>
                       <option value="none">None</option>
                     </select>
                   </div>

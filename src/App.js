@@ -9,7 +9,6 @@ class App extends React.Component {
   state = {
     books: []
   }
-  
   componentDidMount() {
     BooksAPI
       .getAll()
@@ -32,7 +31,6 @@ class App extends React.Component {
           }))
         })
   }
-  
   render() {
     const { books } = this.state;
     console.log('these are the books:', books)
@@ -43,14 +41,16 @@ class App extends React.Component {
             path="/" 
             element={
               <Shelves 
-                updateController={this.updateController}
-              />}
+                books={ books }
+                updateController={ this.updateController }
+              />
+            }
           />
           <Route
             path="/search" 
             element={
               <SearchBooks 
-                updateController={this.updateController}
+                updateController={ this.updateController }
               />
             }
           />

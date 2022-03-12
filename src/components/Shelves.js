@@ -1,19 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import * as BooksAPI from './BooksAPI'
 import '../App.css'
 
 class Shelves extends React.Component {
 
-  state = {
-    currentlyReading: [],
-    wantToRead: [],
-    read: []
-  }
-
   render() {
-    const { currentlyReading, wantToRead, read } = this.state
-    const { updateController } = this.props
+    const { books, updateController } = this.props
     //console.log('books:', this.props)
     return (
       <div className="app">
@@ -28,7 +20,7 @@ class Shelves extends React.Component {
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                       <li>
-                        {booksFound.map((book, index) => (
+                        {books.map((book, index) => (
                           <div className="book">
                             <div className="book-top">
                               <li key={book[index]}>{book.title}</li>
@@ -41,9 +33,9 @@ class Shelves extends React.Component {
                                   onChange={(event) => updateController(book, event.target.value)} 
                                 >
                                   <option value="move" disabled>Move to...</option>
-                                  <option value={ currentlyReading }>Currently Reading</option>
-                                  <option value={ wantToRead }>Want to Read</option>
-                                  <option value={ read }>Read</option>
+                                  <option value="currentlyReading">Currently Reading</option>
+                                  <option value="wantToRead">Want to Read</option>
+                                  <option value="read">Read</option>
                                   <option value="none">None</option>
                                 </select>
                               </div>
@@ -61,7 +53,7 @@ class Shelves extends React.Component {
                   <div className="bookshelf-books">
                   <ol className="books-grid">
                     <li>
-                      {booksFound.map((book, index) => (
+                      {books.map((book, index) => (
                         <div className="book">
                           <div className="book-top">
                             <li key={book[index]}>{book.title}</li>
@@ -74,9 +66,9 @@ class Shelves extends React.Component {
                                 onChange={(event) => this.props.updateController(book, event.target.value)} 
                               >
                                 <option value="move" disabled>Move to...</option>
-                                <option value={ currentlyReading }>Currently Reading</option>
-                                <option value={ wantToRead }>Want to Read</option>
-                                <option value={ read }>Read</option>
+                                <option value="currentlyReading">Currently Reading</option>
+                                <option value="wantToRead">Want to Read</option>
+                                <option value="read">Read</option>
                                 <option value="none">None</option>
                               </select>
                             </div>
@@ -94,7 +86,7 @@ class Shelves extends React.Component {
                   <div className="bookshelf-books">
                   <ol className="books-grid">
                     <li>
-                      {booksFound.map((book, index) => (
+                      {books.map((book, index) => (
                         <div className="book">
                           <div className="book-top">
                             <li key={book[index]}>{book.title}</li>
@@ -107,9 +99,9 @@ class Shelves extends React.Component {
                                 onChange={(event) => this.props.updateController(book, event.target.value)} 
                               >
                                 <option value="move" disabled>Move to...</option>
-                                <option value={ currentlyReading }>Currently Reading</option>
-                                <option value={ wantToRead }>Want to Read</option>
-                                <option value={ read }>Read</option>
+                                <option value="currentlyReading">Currently Reading</option>
+                                <option value="wantToRead">Want to Read</option>
+                                <option value="read">Read</option>
                                 <option value="none">None</option>
                               </select>
                             </div>
