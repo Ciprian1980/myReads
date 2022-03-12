@@ -43,14 +43,13 @@ class App extends React.Component {
             path="/" 
             element={
               <Shelves 
-                books={ books } 
+                updateController={this.updateController}
               />}
           />
           <Route
             path="/search" 
             element={
               <SearchBooks 
-                books={ books }
                 updateController={this.updateController}
               />
             }
