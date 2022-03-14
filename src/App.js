@@ -22,7 +22,6 @@ class App extends React.Component {
     BooksAPI
       .update(book, shelf)
         .then((response) => {
-          console.log('response:', response)
           this.setState((prevBook) => ({
             books: prevBook.books
               .filter((_book) => {
@@ -33,7 +32,6 @@ class App extends React.Component {
   }
   render() {
     const { books } = this.state;
-    console.log('these are the books:', books)
     return (
       <div>
         <Routes>
