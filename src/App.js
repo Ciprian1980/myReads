@@ -9,26 +9,19 @@ class App extends React.Component {
   state = {
     books: []
   }
-  componentDidMount() {
-    BooksAPI
-      .getAll()
-        .then((books) => {
-          this.setState(() => ({
-            books
-          }))
-        })
+  async componentDidMount() {
+    const books = await BooksAPI.getAll();
+    this.setState({ books });
+       
   }
-  updateController = (book, shelf) => {
-    BooksAPI
-      .update(book, shelf)
-        .then((response) => {
-          this.setState((prevBook) => ({
-            books: prevBook.books
-              .filter((_book) => {
-              return _book.id !== book.id
-            }).concat({...book, shelf})
-          }))
-        })
+  async updateController(book, shelf) {
+    await BooksAPI.update(book, shelf);
+    this.setState((prevBook) => ({
+      books: prevBook.books
+        .filter((_book) => {
+        return _book.id !== book.id
+      }).concat({...book, shelf})
+    }))
   }
   render() {
     const { books } = this.state;
