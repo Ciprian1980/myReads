@@ -3,25 +3,27 @@ html, body, .root {
 }
 
 body {
-  line-height: 1.5;
+  line-height: 1.5; 
+  border-top: 5px solid rgba(247, 210, 89, 0.986);
+  padding-top: 5px
 }
 
 body, .app {
-  background: white;
+  background-color: #e6e6e6;
 }
 
 /* main page */
 
 .list-books-title {
   padding: 10px 0;
-  background: #2e7c31;
+  background: rgb(116, 190, 236);
   text-align: center;
 }
 
 .list-books-title h1 {
   font-weight: 400;
   margin: 0;
-  color: white;
+  color: rgba(247, 210, 89, 0.986); 
 }
 
 .list-books-content {
@@ -40,9 +42,13 @@ body, .app {
 }
 
 .bookshelf-title {
-  border-bottom: 1px solid #dedede;
+  border-bottom: 1px solid rgba(247, 210, 89, 0.986);
 }
 
+.bookshelf-title h2 {
+  color: rgb(116, 190, 236);
+}
+ 
 .bookshelf-books {
   text-align: center;
 }
@@ -58,7 +64,7 @@ body, .app {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #2e7d32;
+  background: rgb(116, 190, 236);
   background-image: url('./icons/add.svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -69,7 +75,7 @@ body, .app {
 }
 
 .open-search button:hover {
-  background-color: rgb(0, 102, 0);
+  background-color: rgba(247, 210, 89, 0.986);
 }
 
 
@@ -96,6 +102,7 @@ body, .app {
   font-size: 1.25em;
   border: none;
   outline: none;
+  background-color: rgb(116, 190, 236);
 }
 
 .close-search {
@@ -111,6 +118,7 @@ body, .app {
   font-size: 0;
   border: none;
   outline: none;
+  background-color: rgba(247, 210, 89, 0.986);
 }
 
 button:active {
@@ -121,6 +129,9 @@ button:active {
 .search-books-results {
   padding: 80px 10px 20px;
 }
+/* .search-books-bar {
+  background-color: rgb(116, 190, 236);
+} */
 
 /* books grid */
 
@@ -135,11 +146,14 @@ button:active {
 
 .books-grid li {
   padding: 10px 15px;
-  text-align: left;
+  text-align: center;
+  border: 1px solid rgba(247, 210, 89, 0.986);
+  margin: 5px;
 }
 
 .book {
   width: 140px;
+  
 }
 
 .book-title,
@@ -169,7 +183,7 @@ button:active {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #60ac5d;
+  background: rgba(247, 210, 89, 0.986);
   background-image: url('./icons/arrow-drop-down.svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -188,7 +202,7 @@ button:active {
 
 .book-cover {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  background: #eee;
+  background: rgb(116, 190, 236);  
 }
 
 .book-cover-title {
