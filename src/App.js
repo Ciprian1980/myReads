@@ -14,7 +14,7 @@ class App extends React.Component {
     this.setState({ books });
        
   }
-  updateController(book, shelf) {
+  updateController = (book, shelf) => {
     BooksAPI.update(book, shelf)
       .then(() => {
         this.setState((prevBook) => ({
