@@ -14,14 +14,16 @@ class App extends React.Component {
     this.setState({ books });
        
   }
-  async updateController(book, shelf) {
-    await BooksAPI.update(book, shelf);
-    this.setState((prevBook) => ({
-      books: prevBook.books
-        .filter((_book) => {
-        return _book.id !== book.id
-      }).concat({...book, shelf})
-    }))
+  updateController(book, shelf) {
+    BooksAPI.update(book, shelf)
+      .then(() => {
+        this.setState((prevBook) => ({
+        books: prevBook.books
+          .filter((_book) => {
+          return _book.id !== book.id
+        }).concat({...book, shelf})
+      }))
+    })
   }
   render() {
     const { books } = this.state;

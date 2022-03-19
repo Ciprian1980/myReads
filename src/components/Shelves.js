@@ -6,6 +6,7 @@ class Shelves extends React.Component {
 
   render() {
     const { books, updateController } = this.props
+    console.log('books', books)
     return (
       <div className="app">
           <div className="list-books">
@@ -18,7 +19,8 @@ class Shelves extends React.Component {
                   <h2 className="bookshelf-title">Currently Reading</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
-                        {books.map((book) => (
+                        {books.filter(b =>   b.shelf === 'currentlyReading')
+                              .map((book) => (
                           <li key={book.id}>
                             <div className="book">
                               <div className="book-top">
@@ -50,7 +52,8 @@ class Shelves extends React.Component {
                   <h2 className="bookshelf-title">Want to Read</h2>
                     <div className="bookshelf-books">
                       <ol className="books-grid">
-                        {books.map((book) => (
+                        {books.filter(b =>   b.shelf === 'wantToRead' )
+                              .map((book) => (
                           <li key={book.id}>
                             <div className="book">
                               <div className="book-top">
@@ -82,7 +85,8 @@ class Shelves extends React.Component {
                   <h2 className="bookshelf-title">Read</h2> 
                     <div className="bookshelf-books">
                       <ol className="books-grid">
-                        {books.map((book) => (
+                        {books.filter(b =>   b.shelf === 'read' )
+                              .map((book) => (
                           <li key={book.id}>
                             <div className="book">
                               <div className="book-top">
