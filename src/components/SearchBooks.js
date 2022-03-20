@@ -36,6 +36,7 @@ updateInput = (event) => {
   
 render() {
   const { query, booksFound } = this.state
+  const { books } = this.props
   return(
     <div className="search-books">
       <div className="search-books-bar">
@@ -69,9 +70,9 @@ render() {
                         onChange={(event) => this.props.updateController(book, event.target.value)} 
                       >
                         <option value="move" disabled>Move to...</option>
-                        <option value="currentlyReading">Currently Reading</option>
-                        <option value="wantToRead">Want to Read</option>
-                        <option value="read">Read</option>
+                        <option value={`${ books.shelf }`}>Currently Reading</option>
+                        <option value={`${ books.shelf }`}>Want to Read</option>
+                        <option value={`${ books.shelf }`}>Read</option>
                         <option value="none">None</option>
                       </select>
                     </div>
