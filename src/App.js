@@ -43,7 +43,6 @@ class App extends React.Component {
             path="/search" 
             element={
               <SearchBooks 
-                books={ books }
                 updateController={ this.updateController }
               />
             }

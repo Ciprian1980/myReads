@@ -24,7 +24,7 @@ updateInput = (event) => {
                   return  r.imageLinks.smallThumbnail !== undefined 
                           && r.imageLinks.thumbnail !== undefined 
                 } else {
-                  return <div><p>'This book doesn't have a controller'</p></div>
+                  return <div><p>'This book does not have a controller'</p></div>
                 }
               })
             }))
@@ -36,7 +36,6 @@ updateInput = (event) => {
   
 render() {
   const { query, booksFound } = this.state
-  const { books } = this.props
   return(
     <div className="search-books">
       <div className="search-books-bar">
@@ -66,13 +65,14 @@ render() {
                       style={{width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})`}}
                     ></div>
                     <div className="book-shelf-changer">
-                      <select             
+                      <select        
+                        value={book.shelf || 'none'}     
                         onChange={(event) => this.props.updateController(book, event.target.value)} 
                       >
                         <option value="move" disabled>Move to...</option>
-                        <option value={`${ books.shelf }`}>Currently Reading</option>
-                        <option value={`${ books.shelf }`}>Want to Read</option>
-                        <option value={`${ books.shelf }`}>Read</option>
+                        <option value="currentlyReading">Currently Reading</option>
+                        <option value="wantToRead">Want to Read</option>
+                        <option value="read">Read</option>
                         <option value="none">None</option>
                       </select>
                     </div>
