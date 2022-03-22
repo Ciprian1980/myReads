@@ -20,12 +20,7 @@ updateInput = (event) => {
           if(Array.isArray(response)){
             this.setState(() => ({
               booksFound: response.filter((r) => { 
-                if (r.imageLinks !== undefined) {
-                  return  r.imageLinks.smallThumbnail !== undefined 
-                          && r.imageLinks.thumbnail !== undefined 
-                } else {
-                  return <div><p>'This book does not have a controller'</p></div>
-                }
+                return r.authors !== undefined && r.imageLinks !== undefined 
               })
             }))
           } else {

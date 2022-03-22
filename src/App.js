@@ -1,8 +1,9 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
-import Shelves from './components/Shelves'
+import HomeScreen from './components/HomeScreen'
 import SearchBooks from './components/SearchBooks'
+import shelf from './components/shelf'
 
 class App extends React.Component {
 
@@ -12,7 +13,6 @@ class App extends React.Component {
   async componentDidMount() {
     const books = await BooksAPI.getAll();
     this.setState({ books });
-       
   }
   updateController = (book, shelf) => {
     BooksAPI.update(book, shelf)
@@ -33,7 +33,7 @@ class App extends React.Component {
           <Route 
             path="/" 
             element={
-              <Shelves 
+              <HomeScreen 
                 books={ books }
                 updateController={ this.updateController }
               />
@@ -44,6 +44,13 @@ class App extends React.Component {
             element={
               <SearchBooks 
                 updateController={ this.updateController }
+              />
+            }
+          />
+          <Route 
+            element={
+              <shelf
+                shelves={ this.shelves }
               />
             }
           />
