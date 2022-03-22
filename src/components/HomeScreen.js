@@ -15,7 +15,11 @@ class HomeScreen extends React.Component {
             <div className="list-books-content">
                 <div>
                   <div className="bookshelf">
-                    <h2 className="bookshelf-title">Currently Reading</h2>
+                    <h2 className="bookshelf-title">
+                      {shelves.map(shelf => {
+                        return shelf.title
+                      })}
+                    </h2>
                     <div className="bookshelf-books">
                       <ol className="books-grid">
                           {books.filter(b => b.shelf === 'currentlyReading')
