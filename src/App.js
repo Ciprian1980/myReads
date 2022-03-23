@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import HomeScreen from './components/HomeScreen'
 import SearchBooks from './components/SearchBooks'
-import shelf from './components/shelf'
+import Shelves from './components/Shelves'
 
 class App extends React.Component {
 
@@ -49,7 +49,7 @@ class App extends React.Component {
           />
           <Route 
             element={
-              <shelf
+              <Shelves
                 shelves={ this.shelves }
               />
             }

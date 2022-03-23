@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import '../App.css'
 
 class HomeScreen extends React.Component {
+  
   render() {
     const { books, updateController, shelves } = this.props
     console.log('books', books)
@@ -16,9 +17,7 @@ class HomeScreen extends React.Component {
                 <div>
                   <div className="bookshelf">
                     <h2 className="bookshelf-title">
-                      {shelves.map(shelf => {
-                        return shelf.title
-                      })}
+                      {shelves}
                     </h2>
                     <div className="bookshelf-books">
                       <ol className="books-grid">
