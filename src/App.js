@@ -42,7 +42,7 @@ class App extends React.Component {
           <Route
             path="/search" 
             element={
-              <SearchBooks 
+              <SearchBooks
                 updateController={ this.updateController }
               />
             }
@@ -50,7 +50,8 @@ class App extends React.Component {
           <Route 
             element={
               <Shelves
-                shelves={ this.shelves }
+                shelves={this.shelves}
+                updateController={ this.updateController }
               />
             }
           />
