@@ -1,5 +1,4 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import '../App.css'
 import Shelves from './Shelves'
@@ -8,7 +7,7 @@ class HomeScreen extends React.Component {
   
   render() {
     const { books, shelves } = this.props
-    console.log('books', books)
+    console.log('Shelves', shelves)
     return (
       <div className="app">
         <div className="list-books">
@@ -19,14 +18,10 @@ class HomeScreen extends React.Component {
                 <div>
                   <div className="bookshelf">
                     <h2 className="bookshelf-title">
-                      {shelves.map(shelf => shelf.title)}
+                      {shelves.map(shelf => {return shelf.title})}
                     </h2>
                     <div className="bookshelf-books">
-                      <Routes>
-                        <Route
-                        element={<Shelves books={ books }/>}
-                        />
-                      </Routes>
+                      <Shelves books={ books }/>}
                     </div>
                   </div>
                 </div>

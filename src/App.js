@@ -35,6 +35,7 @@ class App extends React.Component {
             element={
               <HomeScreen 
                 books={ books }
+                shelves={ Shelves }
                 updateController={ this.updateController }
               />
             }
