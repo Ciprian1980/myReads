@@ -31,7 +31,7 @@ class App extends React.Component {
       <div>
         <Routes>
           <Route 
-            path="/" 
+            path="*" 
             element={
               <HomeScreen 
                 books={ books }
