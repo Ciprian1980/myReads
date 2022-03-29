@@ -35,7 +35,6 @@ class App extends React.Component {
             element={
               <HomeScreen 
                 books={ books }
-                shelves={ Shelves }
                 updateController={ this.updateController }
               />
             }
@@ -51,7 +50,6 @@ class App extends React.Component {
           <Route 
             element={
               <Shelves
-                shelves={this.shelves}
                 updateController={ this.updateController }
               />
             }

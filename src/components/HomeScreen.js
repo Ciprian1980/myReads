@@ -18,10 +18,10 @@ class HomeScreen extends React.Component {
                 <div>
                   <div className="bookshelf">
                     <h2 className="bookshelf-title">
-                      {shelves.map(shelf => {return shelf.title})}
+                      {shelves.map(shelf => { return shelf.title })}
                     </h2>
                     <div className="bookshelf-books">
-                      <Shelves books={ books }/>}
+                      <Shelves books={ books } shelves={shelves}/>}
                     </div>
                   </div>
                 </div>
@@ -38,4 +38,4 @@ class HomeScreen extends React.Component {
   }
 }
 
-export default HomeScreen
+export default HomeScreen;
