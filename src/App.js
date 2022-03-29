@@ -6,7 +6,11 @@ import SearchBooks from './components/SearchBooks'
 import Shelves from './components/Shelves'
 
 class App extends React.Component {
-
+  constructor(shelves = []) {
+    super()
+    this.shelves = shelves;
+    console.log('App.js Shelves', this.shelves)
+  }
   state = {
     books: []
   }
@@ -35,6 +39,7 @@ class App extends React.Component {
             element={
               <HomeScreen 
                 books={ books }
+                shelves={ this.shelves }
                 updateController={ this.updateController }
               />
             }
@@ -50,6 +55,7 @@ class App extends React.Component {
           <Route 
             element={
               <Shelves
+                shelves={ this.shelves }
                 updateController={ this.updateController }
               />
             }

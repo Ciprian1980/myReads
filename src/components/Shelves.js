@@ -1,13 +1,14 @@
 import React from 'react'
 
-function Shelves() {
-  
-    const shelves = [
+function Shelves(props) {
+    let { books, updateController, shelves } = props
+    console.log('Shelves.js Shelves', shelves)
+    shelves = [
       { title: 'Read', key: 'read' },
       { title: 'Want To Read', key: 'wantToRead' },
       { title: 'Currently Reading', key: 'currentlyReading' }
     ]
-    const { books, updateController } = this.props
+    
   return (
     <div>
       <ol className="books-grid">

@@ -4,10 +4,10 @@ import '../App.css'
 import Shelves from './Shelves'
 
 class HomeScreen extends React.Component {
-  
+
   render() {
     const { books, shelves } = this.props
-    console.log('Shelves', shelves)
+    console.log('HomeScreen.js Shelves', shelves)
     return (
       <div className="app">
         <div className="list-books">
@@ -21,7 +21,7 @@ class HomeScreen extends React.Component {
                       {shelves.map(shelf => { return shelf.title })}
                     </h2>
                     <div className="bookshelf-books">
-                      <Shelves books={ books } shelves={shelves}/>}
+                      <Shelves books={ books } shelves={ shelves }/>}
                     </div>
                   </div>
                 </div>
