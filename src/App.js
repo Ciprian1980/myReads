@@ -31,6 +31,7 @@ class App extends React.Component {
   }
   render() {
     const { books } = this.state;
+    const { shelves } = this.props;
     return (
       <div>
         <Routes>
@@ -39,7 +40,7 @@ class App extends React.Component {
             element={
               <HomeScreen 
                 books={ books }
-                shelves={ this.shelves }
+                shelves={ shelves }
                 updateController={ this.updateController }
               />
             }
@@ -55,7 +56,7 @@ class App extends React.Component {
           <Route 
             element={
               <Shelves
-                shelves={ this.shelves }
+                shelves={ shelves }
                 updateController={ this.updateController }
               />
             }
