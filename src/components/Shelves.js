@@ -1,9 +1,9 @@
 import React from 'react'
 
 function Shelves(props) {
-    let { books, updateController, shelves } = props
-    console.log('Shelves.js Shelves', shelves)
-    shelves = [
+    let { books, updateController } = props
+    
+    const shelves = [
       { title: 'Read', key: 'read' },
       { title: 'Want To Read', key: 'wantToRead' },
       { title: 'Currently Reading', key: 'currentlyReading' }
@@ -11,8 +11,18 @@ function Shelves(props) {
     
   return (
     <div>
+      <div className="bookshelf">{ shelves.map(shelf => 
+          (<h2 className="bookshelf-title">{ shelf.title }</h2> )
+          )}
+        <div className="bookshelf-books">
+          
+        </div>
+      </div>
       <ol className="books-grid">
-        {books.filter(b => b.shelf === shelves.key)
+        {books.filter(b =>  b.shelf === shelves.key
+        // console.log('b.shelf:', b.shelf, 'b.shelf === shelves.key:', b.shelf === shelves.key, 'books:', books)
+        )
+       
               .map((book) => (
             <li key={book.id}>
               <div className="book">

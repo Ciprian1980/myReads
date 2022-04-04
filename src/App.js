@@ -3,14 +3,10 @@ import { Routes, Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import HomeScreen from './components/HomeScreen'
 import SearchBooks from './components/SearchBooks'
-import Shelves from './components/Shelves'
+
 
 class App extends React.Component {
-  constructor(shelves = []) {
-    super()
-    this.shelves = shelves;
-    console.log('App.js Shelves', this.shelves)
-  }
+  
   state = {
     books: []
   }
@@ -31,7 +27,6 @@ class App extends React.Component {
   }
   render() {
     const { books } = this.state;
-    const { shelves } = this.props;
     return (
       <div>
         <Routes>
@@ -40,7 +35,6 @@ class App extends React.Component {
             element={
               <HomeScreen 
                 books={ books }
-                shelves={ shelves }
                 updateController={ this.updateController }
               />
             }
@@ -49,14 +43,6 @@ class App extends React.Component {
             path="/search" 
             element={
               <SearchBooks
-                updateController={ this.updateController }
-              />
-            }
-          />
-          <Route 
-            element={
-              <Shelves
-                shelves={ shelves }
                 updateController={ this.updateController }
               />
             }
