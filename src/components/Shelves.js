@@ -8,30 +8,27 @@ function Shelves(props) {
       { title: 'Currently Reading', key: 'currentlyReading' }
     ]
     
-  return (
-    <div>
-      <div className="bookshelf">
-        {shelves.map(shelf => 
-          (<h2 className="bookshelf-title">{ shelf.title }</h2>
-            <div className="bookshelf-books"> 
+    return (
+      <>
+        {shelves.map((shelf) => (
+          <div className="bookshelf">
+            <h2 className="bookshelf-title">{shelf.title}</h2>
+            <div className="bookshelf-books">
               <ol className="books-grid">
                 <div>
                   {books
-                    .filter(book => (book.shelf === shelf.key))
-                    .map((book) => ( 
+                    .filter((book) => book.shelf === shelf.key)
+                    .map((book) => (
                       <li key={book.id}>
+                        {console.log("book:", book)}
                         <div className="book">
                           <div className="book-top">
-                            <div 
-                              className="book-cover"
-                              style={{width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})`}}
-                            ></div>
+                            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }} />
                             <div className="book-shelf-changer">
-                              <select         
-                                value={book.shelf || 'none'}    
-                                onChange={(event) => updateController(book, event.target.value)} 
-                              >
-                                <option value="move" disabled>Move to...</option>
+                              <select value={book.shelf || "none"} onChange={(event) => updateController(book, event.target.value)}>
+                                <option value="move" disabled>
+                                  Move to...
+                                </option>
                                 <option value="currentlyReading">Currently Reading</option>
                                 <option value="wantToRead">Want to Read</option>
                                 <option value="read">Read</option>
@@ -42,14 +39,14 @@ function Shelves(props) {
                           <div className="book-title">{book.title}</div>
                           <div className="book-authors">{book.authors}</div>
                         </div>
-                      </li> 
+                      </li>
                     ))}
-                  </div>
-                </ol>
-              </div>
-              ))}
+                </div>
+              </ol>
             </div>
           </div>
-  )
+        ))}
+      </>
+    )
 }
 export default Shelves;
