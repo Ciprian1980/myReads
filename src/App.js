@@ -1,19 +1,26 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { Routes, Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import HomeScreen from './components/HomeScreen'
 import SearchBooks from './components/SearchBooks'
 
 
-class App extends React.Component {
-  
-  state = {
-    books: []
-  }
-  async componentDidMount() {
-    const books = await BooksAPI.getAll();
-    this.setState({ books });
-  }
+function App() {
+  const [ books, setBooks ] = useState([])
+
+  /**
+   * Every useEffect is a componentWillMount, componentDidMount, componentWillUnmount
+   */
+  useEffect(() => {
+    const getBooks = async () => {
+      const fetchedBooks = await BooksAPI.getAll()
+      setBooks(fetchedBooks)  
+    }
+
+    // Now invoke the async function:
+    getBooks()
+  })
+
   updateController = (book, shelf) => {
     BooksAPI.update(book, shelf)
       .then(() => {

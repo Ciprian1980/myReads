@@ -1,36 +1,28 @@
-import React, { Component }  from 'react'
+import React, { Component, useState, useEffect }  from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from '../BooksAPI'
 import '../App.css'
 
-class SearchBooks extends Component {
-  
-state = {
-  query: '',
-  booksFound: []
-}
+export default function SearchBooks() {
+  const [ query, setQuery ] = useState('')
+  const [ booksFound, setBooksFound ] = useState([])
 
-updateInput = (event) => {
-  this.setState({
-    query: event.target.value
-  })
-  BooksAPI
-    .search(event.target.value)
+  const updateInput = (event) => {
+    setQuery(event.target.value)
+    BooksAPI
+      .search(event.target.value)
       .then((response) => {
           if(Array.isArray(response)){
-            this.setState(() => ({
-              booksFound: response.filter((r) => { 
-                return r.authors !== undefined && r.imageLinks !== undefined 
-              })
-            }))
+            const filteredBooks = response.filter((r) => { 
+              return r.authors !== undefined && r.imageLinks !== undefined 
+            })
+            setBooksFound(filteredBooks)
           } else {
-              this.setState(() => ({ booksFound: [] })); 
+            setBooksFound([])
           }
       })
-}
+  }
   
-render() {
-  const { query, booksFound } = this.state
   return(
     <div className="search-books">
       <div className="search-books-bar">
@@ -42,7 +34,7 @@ render() {
             type="text" 
             placeholder="Search by title or author"
             value={ query }
-            onChange={ this.updateInput }
+            onChange={ updateInput }
           />
         </div>
       </div>
@@ -81,6 +73,4 @@ render() {
       </div>
     </div>
   )
- }
 }
-export default SearchBooks 
