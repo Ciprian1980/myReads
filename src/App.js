@@ -8,32 +8,26 @@ import SearchBooks from './components/SearchBooks'
 function App() {
   const [ books, setBooks ] = useState([])
 
-  /**
-   * Every useEffect is a componentWillMount, componentDidMount, componentWillUnmount
-   */
   useEffect(() => {
     const getBooks = async () => {
       const fetchedBooks = await BooksAPI.getAll()
       setBooks(fetchedBooks)  
     }
-
-    // Now invoke the async function:
     getBooks()
   })
 
-  updateController = (book, shelf) => {
+  const updateController = (book, shelf) => {
     BooksAPI.update(book, shelf)
       .then(() => {
-        this.setState((prevBook) => ({
-        books: prevBook.books
+        useState((setBooks) => ({
+        books: setBooks.books
           .filter((_book) => {
           return _book.id !== book.id
         }).concat({...book, shelf})
       }))
     })
   }
-  render() {
-    const { books } = this.state;
+    
     return (
       <div>
         <Routes>
@@ -42,7 +36,7 @@ function App() {
             element={
               <HomeScreen 
                 books={ books }
-                updateController={ this.updateController }
+                updateController={ updateController }
               />
             }
           />
@@ -50,7 +44,7 @@ function App() {
             path="/search" 
             element={
               <SearchBooks
-                updateController={ this.updateController }
+                updateController={ updateController }
               />
             }
           />
@@ -58,6 +52,6 @@ function App() {
       </div>
     )
   }
-}
+
 
 export default App
