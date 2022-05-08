@@ -14,7 +14,7 @@ function App() {
       setBooks(fetchedBooks)  
     }
     getBooks()
-  })
+  }, [books])
 
   const updateController = (book, shelf) => {
     BooksAPI.update(book, shelf)
