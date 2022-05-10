@@ -6,7 +6,7 @@ import Shelves from './Shelves'
 class HomeScreen extends React.Component {
 
   render() {
-    const { books, updateController } = this.props
+    const { books, updateController, booksFound } = this.props
     
     return (
       <div className="app">
@@ -15,7 +15,7 @@ class HomeScreen extends React.Component {
             <h1>MyReads</h1>
           </div>
             <div className="list-books-content">
-              <Shelves books={ books } updateController={updateController}/>
+              <Shelves books={ books } updateController={updateController} booksFound={booksFound}/>
             </div>
             </div>
           <div className="open-search">

@@ -3,12 +3,15 @@ import { Routes, Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import HomeScreen from './components/HomeScreen'
 import SearchBooks from './components/SearchBooks'
+import Shelves from './components/Shelves'
 
 
 class App extends React.Component {
   
   state = {
-    books: []
+    books: [],
+    query: '',
+    booksFound: []
   }
   async componentDidMount() {
     const books = await BooksAPI.getAll();
@@ -25,6 +28,26 @@ class App extends React.Component {
       }))
     })
   }
+  
+  updateInput = (event) => {
+    this.setState({
+      query: event.target.value
+    })
+    BooksAPI
+      .search(event.target.value)
+        .then((response) => {
+          if(Array.isArray(response)){
+            this.setState(() => ({
+              booksFound: response.filter((r) => { 
+                return r.authors !== undefined && r.imageLinks !== undefined 
+              })
+            }))
+          } else {
+              this.setState(() => ({ booksFound: [] })); 
+          }
+        })
+  }
+
   render() {
     const { books } = this.state;
     return (
@@ -36,6 +59,7 @@ class App extends React.Component {
               <HomeScreen 
                 books={ books }
                 updateController={ this.updateController }
+                booksFound={ this.booksFound }
               />
             }
           />
@@ -43,7 +67,11 @@ class App extends React.Component {
             path="/search" 
             element={
               <SearchBooks
+                books={ this.books }
+                query={ this.query }
+                booksFound={ this.booksFound }
                 updateController={ this.updateController }
+                updateInput={ this.updateInput }
               />
             }
           />
