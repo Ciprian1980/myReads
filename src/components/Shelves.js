@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Shelves(props) {
     let { books, updateController } = props
@@ -18,7 +19,9 @@ function Shelves(props) {
                 {books
                   .filter((book) => book.shelf === shelf.key)
                   .map((book) => (
-                    <li key={book.id}>
+                    <li key={book.id} onClick={() => }>
+                      <Link to="/detailPage">
+                      </Link>
                       {console.log("book:", book)}
                       <div className="book">
                         <div className="book-top">

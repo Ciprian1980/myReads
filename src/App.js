@@ -4,6 +4,7 @@ import * as BooksAPI from './BooksAPI'
 import HomeScreen from './components/HomeScreen'
 import SearchBooks from './components/SearchBooks'
 import Shelves from './components/Shelves'
+import DetailPage from './components/DetailPage'
 
 
 class App extends React.Component {
@@ -72,6 +73,14 @@ class App extends React.Component {
                 booksFound={ this.booksFound }
                 updateController={ this.updateController }
                 updateInput={ this.updateInput }
+              />
+            }
+          />
+          <Route
+            path="/detailPage"
+            element={
+              <DetailPage 
+                books={ this.books }
               />
             }
           />
