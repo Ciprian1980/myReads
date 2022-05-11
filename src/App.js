@@ -14,7 +14,7 @@ function App() {
       setBooks(fetchedBooks)  
     }
     getBooks()
-  }, [books])
+  }, []) // just run when the component mounts and unmounts if [] here
 
   const updateController = (book, shelf) => {
     BooksAPI.update(book, shelf)
