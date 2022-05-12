@@ -19,7 +19,7 @@ function Shelves(props) {
                 {books
                   .filter((book) => book.shelf === shelf.key)
                   .map((book) => (
-                    <li key={book.id} onClick={() => }>
+                    <li key={book.id}>
                       <Link to="/detailPage">
                       </Link>
                       {console.log("book:", book)}
