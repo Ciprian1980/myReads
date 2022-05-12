@@ -147,6 +147,9 @@ button:active {
   border: 1px solid rgba(247, 210, 89, 0.986);
   margin: 5px;
 }
+.books-grid li:hover {
+  background-color: teal;
+}
 
 .book {
   width: 140px;
