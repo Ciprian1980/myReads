@@ -21,6 +21,7 @@ function Shelves(props) {
                   .map((book) => (
                     <li key={book.id}>
                       <Link to="/detailPage">
+                        Details
                       </Link>
                       {console.log("book:", book)}
                       <div className="book">

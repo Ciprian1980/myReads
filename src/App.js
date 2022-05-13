@@ -3,8 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import HomeScreen from './components/HomeScreen'
 import SearchBooks from './components/SearchBooks'
-import Shelves from './components/Shelves'
-import DetailPage from './components/DetailPage'
+import BookDetails from './components/BookDetails'
 
 
 class App extends React.Component {
@@ -76,13 +75,13 @@ class App extends React.Component {
               />
             }
           />
-          <Route
-            path="/detailPage"
-            element={
-              <DetailPage 
+          <Route 
+            path="/bookDetails/:id" 
+            element={ 
+              <BookDetails 
                 books={ this.books }
-              />
-            }
+              /> 
+            } 
           />
         </Routes>
       </div>
