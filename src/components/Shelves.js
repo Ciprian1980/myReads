@@ -18,8 +18,8 @@ function Shelves(props) {
               <ol className="books-grid">
                 {books
                   .filter((book) => book.shelf === shelf.key)
-                  .map((book) => (
-                    <li key={book.id}>
+                  .map((book, index) => (
+                    <li key={`book-${index}`}>
                       <Link to="/detailPage">
                         Details
                       </Link>

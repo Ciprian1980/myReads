@@ -49,7 +49,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { books } = this.state;
+    const { books, booksFound, query } = this.state;
     return (
       <div>
         <Routes>
@@ -59,7 +59,7 @@ class App extends React.Component {
               <HomeScreen 
                 books={ books }
                 updateController={ this.updateController }
-                booksFound={ this.booksFound }
+                booksFound={ booksFound }
               />
             }
           />
@@ -67,9 +67,9 @@ class App extends React.Component {
             path="/search" 
             element={
               <SearchBooks
-                books={ this.books }
-                query={ this.query }
-                booksFound={ this.booksFound }
+                books={ books }
+                query={ query }
+                booksFound={ booksFound }
                 updateController={ this.updateController }
                 updateInput={ this.updateInput }
               />
@@ -79,7 +79,7 @@ class App extends React.Component {
             path="/bookDetails/:id" 
             element={ 
               <BookDetails 
-                books={ this.books }
+                books={ books }
               /> 
             } 
           />

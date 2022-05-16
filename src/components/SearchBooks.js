@@ -50,7 +50,7 @@ function SearchBooks(props) {
               </div>
             </li>
           )
-          .map(bookFound => ( bookFound === books ? book.shelf = book : book.shelf = 'none'))
+          // .map(bookFound => ( bookFound === books ? book.shelf = book : book.shelf = 'none'))
           )}
         </ol>
       </div>
