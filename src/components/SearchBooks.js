@@ -34,7 +34,8 @@ function SearchBooks(props) {
                   ></div>
                   <div className="book-shelf-changer">
                     <select        
-                      value={book.shelf || 'none'}     
+                      // value={book.shelf || 'none'}  
+                      value={booksFound.map(bookfound => bookfound === books ? book.shelf = book : book.shelf === 'none')}   
                       onChange={(event) => updateController(book, event.target.value)} 
                     >
                       <option value="move" disabled>Move to...</option>
@@ -50,7 +51,6 @@ function SearchBooks(props) {
               </div>
             </li>
           )
-          // .map(bookFound => ( bookFound === books ? book.shelf = book : book.shelf = 'none'))
           )}
         </ol>
       </div>
