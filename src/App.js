@@ -29,7 +29,7 @@ class App extends React.Component {
     })
   }
   
-  updateInput = (event) => {
+  updateInput = (event, booksOnShelf) => {
     this.setState({
       query: event.target.value
     })
@@ -38,10 +38,19 @@ class App extends React.Component {
         .then((response) => {
           if(Array.isArray(response)){
             this.setState(() => ({
-              booksFound: response.filter((r) => { 
-                return r.authors !== undefined && r.imageLinks !== undefined 
-              })
-            }))
+              booksFound: response
+                .filter((r) => { 
+                  return r.authors !== undefined && r.imageLinks !== undefined 
+                })
+                .forEach((book) => {booksOnShelf
+                  .forEach((bShelf) => {
+                    if(book.id === bShelf.id) { 
+                      bShelf.shelf = book.shelf
+                    }
+                  })
+                })
+              }
+            ))
           } else {
               this.setState(() => ({ booksFound: [] })); 
           }
