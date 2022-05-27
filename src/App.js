@@ -29,12 +29,14 @@ class App extends React.Component {
     })
   }
   
-  updateInput = (event, booksOnShelf) => {
+  updateInput = (event, booksOnShelf = []) => {
+    // console.log('books on shelf:', booksOnShelf)
     this.setState({
       query: event.target.value
     })
     BooksAPI
       .search(event.target.value)
+      
         .then((response) => {
           if(Array.isArray(response)){
             this.setState(() => ({
@@ -42,13 +44,17 @@ class App extends React.Component {
                 .filter((r) => { 
                   return r.authors !== undefined && r.imageLinks !== undefined 
                 })
-                .forEach((book) => {booksOnShelf
-                  .forEach((bShelf) => {
+                if(booksOnShelf){
+                  .forEach((book) => {
+                  // console.log("books", book)
+                  booksOnShelf.forEach((bShelf) => {
+                    console.log('bookshelves:', booksOnShelf)
                     if(book.id === bShelf.id) { 
                       bShelf.shelf = book.shelf
                     }
                   })
                 })
+                }
               }
             ))
           } else {
