@@ -36,7 +36,6 @@ class App extends React.Component {
     })
     BooksAPI
       .search(event.target.value)
-      
         .then((response) => {
           if(Array.isArray(response)){
             this.setState(() => ({
@@ -44,17 +43,17 @@ class App extends React.Component {
                 .filter((r) => { 
                   return r.authors !== undefined && r.imageLinks !== undefined 
                 })
-                if(booksOnShelf){
-                  .forEach((book) => {
+                .forEach((book) => {
                   // console.log("books", book)
-                  booksOnShelf.forEach((bShelf) => {
-                    console.log('bookshelves:', booksOnShelf)
+                  if(booksOnShelf) {
+                    booksOnShelf.forEach((bShelf) => {
+                    // console.log('bookshelves:', booksOnShelf)
                     if(book.id === bShelf.id) { 
                       bShelf.shelf = book.shelf
                     }
                   })
+                  }
                 })
-                }
               }
             ))
           } else {
