@@ -28,39 +28,61 @@ class App extends React.Component {
       }))
     })
   }
-  
-  updateInput = (event, booksOnShelf = []) => {
-    // console.log('books on shelf:', booksOnShelf)
+    
+  // filter books
+  filterNonCompleteBooks = (books) => {
+    return books.filter((book) => Boolean(book.imageLinks) || Boolean(book.authors));
+  };
+
+  // set shelf to searched books
+  setShelfToSearchedBooks = (books) => {
+    // renamed the variable `books` to `ownedBooks`
+    const { books: ownedBooks } = this.state; 
+    
+    // create an array of ids of all books you have on your own shelf
+    const bookIds = ownedBooks.map((book) => book.id);
+
+    return books.map((book) => {
+      
+      // `includes` will check if the books is in your shelf already
+      if (bookIds.includes(book.id)) {
+        
+        // if it is, it will return a new object with the correct shelf
+        return {
+          ...book,
+          shelf: ownedBooks.find((ownedBook) => ownedBook.id === book.id).shelf,
+        };
+      }
+
+      return book;
+    });
+  };
+
+  // search for books
+  updateInput = (event) => {
     this.setState({
-      query: event.target.value
-    })
-    BooksAPI
-      .search(event.target.value)
-        .then((response) => {
-          if(Array.isArray(response)){
-            this.setState(() => ({
-              booksFound: response
-                .filter((r) => { 
-                  return r.authors !== undefined && r.imageLinks !== undefined 
-                })
-                .forEach((book) => {
-                  // console.log("books", book)
-                  if(booksOnShelf) {
-                    booksOnShelf.forEach((bShelf) => {
-                    // console.log('bookshelves:', booksOnShelf)
-                    if(book.id === bShelf.id) { 
-                      bShelf.shelf = book.shelf
-                    }
-                  })
-                  }
-                })
-              }
-            ))
-          } else {
-              this.setState(() => ({ booksFound: [] })); 
-          }
-        })
-  }
+      query: event.target.value,
+    });
+
+    BooksAPI.search(event.target.value).then((response) => {
+      if (Array.isArray(response)) {
+        
+        // new simplified way to separate concerns and functionality
+        const filteredBooks = this.filterNonCompleteBooks(response);
+        const booksWithMatchedShelfs = this.setShelfToSearchedBooks(
+          filteredBooks
+        );
+
+        this.setState({
+          booksFound: booksWithMatchedShelfs,
+        });
+      } else {
+        this.setState({
+          booksFound: []
+        });
+      }
+    });
+  };
 
   render() {
     const { books, booksFound, query } = this.state;

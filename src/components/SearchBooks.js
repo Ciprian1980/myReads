@@ -24,7 +24,7 @@ function SearchBooks(props) {
       </div>
       <div className="bookshelf-books">
         <ol className="books-grid">
-          {booksFound.map((book) => (
+          {booksFound === query ? booksFound.map((book) => (
             <li key={book.id}>
               <div className="book">
                 <div className="book-top">
@@ -34,12 +34,11 @@ function SearchBooks(props) {
                   ></div>
                   <div className="book-shelf-changer">
                     <select        
-                      // value={book.shelf || 'none'}  
                       value={booksFound.map(bookfound => bookfound === books ? book.shelf = book : book.shelf === 'none')}   
                       onChange={(event) => updateController(book, event.target.value)} 
                     >
                       <option value="move" disabled>Move to...</option>
-                      <option value="currentlyReading">Currently Reading</option>
+                      <option value={book.shelf || "none"}>Currently Reading</option>
                       <option value="wantToRead">Want to Read</option>
                       <option value="read">Read</option>
                       <option value="none">None</option>
@@ -50,8 +49,13 @@ function SearchBooks(props) {
                 <div className="book-authors">{book.authors}</div>
               </div>
             </li>
-          )
-          )}
+          )): <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>Book not found!</strong> Please try a different search.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          }
         </ol>
       </div>
     </div>
