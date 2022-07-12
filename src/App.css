@@ -148,7 +148,7 @@ button:active {
   margin: 5px;
 }
 .books-grid li:hover {
-  background-color: teal;
+  background-color: #f1f5f2
 }
 
 .book {
