@@ -5,11 +5,11 @@ import '../App.css'
 
 export default function SearchBooks(props) {
   const { updateController } = props
-  const [ query, setQuery ] = useState('')
+  // const [ query, setQuery ] = useState('')
   const [ booksFound, setBooksFound ] = useState([])
 
   const updateInput = (event) => {
-    setQuery(event.target.value)
+    // setQuery(event.target.value)
     BooksAPI
       .search(event.target.value)
       .then((response) => {
@@ -34,7 +34,7 @@ export default function SearchBooks(props) {
           <input 
             type="text" 
             placeholder="Search by title or author"
-            value={ query }
+            // value={ query }
             onChange={ updateInput }
           />
         </div>
