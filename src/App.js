@@ -28,6 +28,62 @@ function App() {
     })
   }
     
+  // filter books
+  const filterNonCompleteBooks = (books) => {
+    return books.filter((book) => Boolean(book.imageLinks) || Boolean(book.authors));
+  };
+
+  // set shelf to searched books
+  const setShelfToSearchedBooks = () => {
+    // renamed the variable `books` to `ownedBooks`
+    // const { books: ownedBooks } = this.state; 
+    const [ books, setBooks ] = useState({});
+    // create an array of ids of all books you have on your own shelf
+    const bookIds = setBooks.map((book) => book.id);
+
+    return books.map((book) => {
+      
+      // `includes` will check if the books is in your shelf already
+      if (bookIds.includes(book.id)) {
+        
+        // if it is, it will return a new object with the correct shelf
+        return {
+          ...book,
+          shelf: setBooks.find((ownedBook) => ownedBook.id === book.id).shelf,
+        };
+      }
+
+      return book;
+    });
+  };
+
+  // search for books
+  const updateInput = (event) => {
+    // this.setState({
+    //   query: event.target.value,
+    // });
+    const [ query, setQuery ] = useState();
+    (event) => setQuery(event.target.value);
+
+    BooksAPI.search(event.target.value).then((response) => {
+      if (Array.isArray(response)) {
+        
+        // new simplified way to separate concerns and functionality
+        const filteredBooks = filterNonCompleteBooks(response);
+        const booksWithMatchedShelfs = setShelfToSearchedBooks(
+          filteredBooks
+        );
+
+        setQuery({
+          booksFound: booksWithMatchedShelfs,
+        });
+      } else {
+        setQuery({
+          booksFound: []
+        });
+      }
+    });
+  };
     return (
       <div>
         <Routes>
@@ -45,6 +101,7 @@ function App() {
             element={
               <SearchBooks
                 updateController={ updateController }
+                updateInput= { updateInput }
               />
             }
           />

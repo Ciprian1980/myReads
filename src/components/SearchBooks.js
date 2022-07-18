@@ -1,9 +1,10 @@
-import React, { Component, useState, useEffect }  from 'react'
+import React, { useState }  from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from '../BooksAPI'
 import '../App.css'
 
-export default function SearchBooks() {
+export default function SearchBooks(props) {
+  const { updateController } = props
   const [ query, setQuery ] = useState('')
   const [ booksFound, setBooksFound ] = useState([])
 
@@ -54,7 +55,7 @@ export default function SearchBooks() {
                     <div className="book-shelf-changer">
                       <select        
                         value={book.shelf || 'none'}     
-                        onChange={(event) => this.props.updateController(book, event.target.value)} 
+                        onChange={(event) => updateController(book, event.target.value)} 
                       >
                         <option value="move" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
