@@ -63,7 +63,7 @@ function App() {
     //   query: event.target.value,
     // });
     const [ query, setQuery ] = useState();
-    (event) => setQuery(event.target.value);
+    setQuery(event.target.value);
 
     BooksAPI.search(event.target.value).then((response) => {
       if (Array.isArray(response)) {
