@@ -20,9 +20,9 @@ function Shelves(props) {
                   .filter((book) => book.shelf === shelf.key)
                   .map((book, index) => (
                     <li key={`book-${index}`}>
-                      <Link to="/detailPage">
+                      {/* <Link to="/detailPage">
                         Details
-                      </Link>
+                      </Link> */}
                       {console.log("book:", book)}
                       <div className="book">
                         <div className="book-top">
