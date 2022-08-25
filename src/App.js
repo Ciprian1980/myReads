@@ -7,6 +7,7 @@ import SearchBooks from './components/SearchBooks'
 
 function App() {
   const [ books, setBooks ] = useState([])
+  const [ query, setQuery ] = useState();
 
   useEffect(() => {
     const getBooks = async () => {
@@ -35,9 +36,7 @@ function App() {
 
   // set shelf to searched books
   const setShelfToSearchedBooks = () => {
-    // renamed the variable `books` to `ownedBooks`
-    // const { books: ownedBooks } = this.state; 
-    const [ books, setBooks ] = useState({});
+  
     // create an array of ids of all books you have on your own shelf
     const bookIds = setBooks.map((book) => book.id);
 
@@ -59,10 +58,6 @@ function App() {
 
   // search for books
   const updateInput = (event) => {
-    // this.setState({
-    //   query: event.target.value,
-    // });
-    const [ query, setQuery ] = useState();
     setQuery(event.target.value);
 
     BooksAPI.search(event.target.value).then((response) => {
@@ -73,7 +68,6 @@ function App() {
         const booksWithMatchedShelfs = setShelfToSearchedBooks(
           filteredBooks
         );
-
         setQuery({
           booksFound: booksWithMatchedShelfs,
         });
