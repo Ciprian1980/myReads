@@ -60,7 +60,7 @@ function App() {
   const updateInput = (event) => {
     setQuery(event.target.value);
 
-    BooksAPI.search(event.target.value).then((response) => {
+    BooksAPI.search(query).then((response) => {
       if (Array.isArray(response)) {
         
         // new simplified way to separate concerns and functionality
