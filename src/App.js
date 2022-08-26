@@ -20,12 +20,12 @@ function App() {
   const updateController = (book, shelf) => {
     BooksAPI.update(book, shelf)
       .then(() => {
-        useState((setBooks) => ({
-        books: setBooks.books
-          .filter((_book) => {
+        const findBookById = setBooks => ({
+          books
+        }).filter((_book) => {
           return _book.id !== book.id
         }).concat({...book, shelf})
-      }))
+        findBookById()
     })
   }
     
