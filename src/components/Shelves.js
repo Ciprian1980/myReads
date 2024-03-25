@@ -20,10 +20,9 @@ function Shelves(props) {
                   .filter((book) => book.shelf === shelf.key)
                   .map((book, index) => (
                     <li key={`book-${index}`}>
-                      {/* <Link to="/detailPage">
+                      <Link to={`/bookDetails/${book.id}`}>
                         Details
-                      </Link> */}
-                      {console.log("book:", book)}
+                      </Link>
                       <div className="book">
                         <div className="book-top">
                           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }} />
